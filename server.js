@@ -33,8 +33,7 @@ mongoose.connect('mongodb://localhost/MyApp');
 mongoose.connection.on('open', function() {
     console.log("Connected to Mongoose...");
 
-    // check if the db is empty, if so seed it with some contacts:
-    seeder.check();
+    // check if the db is empty, if so seed it with a company:
     seeder.checkCompanies();
 });
 

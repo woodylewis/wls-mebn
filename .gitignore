@@ -2,3 +2,7 @@ node_modules/*
 build/*
 *.sublime-project
 *.sublime-workspace
+.DS_Store
+*/.DS_Store
+mebn.err
+mebn.out

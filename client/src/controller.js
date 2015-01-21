@@ -1,6 +1,6 @@
 var Marionette = require('backbone.marionette'),
     ContactsView = require('./views/contacts'),
-    ContactDetailsView = require('./views/contact_details'),
+    ContactDetailsView = require('./views/company_details'),
     AddContactView = require('./views/add');
 
 module.exports = Controller = Marionette.Controller.extend({

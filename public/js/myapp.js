@@ -15214,7 +15214,7 @@ module.exports = ContactsCollection = Backbone.Collection.extend({
 },{"../models/contact":5}],3:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     ContactsView = require('./views/contacts'),
-    ContactDetailsView = require('./views/contact_details'),
+    ContactDetailsView = require('./views/company_details'),
     AddContactView = require('./views/add');
 
 module.exports = Controller = Marionette.Controller.extend({
@@ -15259,7 +15259,7 @@ module.exports = Controller = Marionette.Controller.extend({
     }
 });
 
-},{"./views/add":7,"./views/contact_details":8,"./views/contacts":9}],4:[function(require,module,exports){
+},{"./views/add":7,"./views/company_details":8,"./views/contacts":9}],4:[function(require,module,exports){
 var App = require('./app');
 var myapp = new App();
 myapp.start();
@@ -15294,17 +15294,18 @@ module.exports = AddView = Marionette.ItemView.extend({
 
     save: function(e) {
         e.preventDefault();
-        var newContact = {
-            name: {
-                first: this.$el.find('#name_first').val(),
-                last: this.$el.find('#name_last').val()
-            },
-            email: this.$el.find('#email').val(),
-            phone: this.$el.find('#phone').val()
+        var newCompany = {
+            name: this.$el.find('#name').val(),
+            ticker: this.$el.find('#ticker').val(),
+            year1: this.$el.find('#year1').val(),
+            year2: this.$el.find('#year2').val(),
+            year3: this.$el.find('#year3').val(),
+            year4: this.$el.find('#year4').val(),
+            year5: this.$el.find('#year5').val()
         };
 
-        window.App.data.contacts.create(newContact);
-        window.App.core.vent.trigger('app:log', 'Add View: Saved new contact!');
+        window.App.data.contacts.create(newCompany);
+        window.App.core.vent.trigger('app:log', 'Add View: Saved new company!');
         window.App.controller.home();
     }
 });
@@ -15313,7 +15314,7 @@ module.exports = AddView = Marionette.ItemView.extend({
 var Marionette = require('backbone.marionette');
 
 module.exports = ContactDetailsView = Marionette.ItemView.extend({
-    template: require('../../templates/contact_details.hbs'),
+    template: require('../../templates/company_details.hbs'),
     events: {
         'click a.back': 'goBack',
         'click a.delete': 'deleteContact'
@@ -15335,12 +15336,11 @@ module.exports = ContactDetailsView = Marionette.ItemView.extend({
     }
 });
 
-},{"../../templates/contact_details.hbs":12}],9:[function(require,module,exports){
+},{"../../templates/company_details.hbs":11}],9:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
 var itemView = Marionette.ItemView.extend({
     template: require('../../templates/company_small.hbs'),
-    //template: require('../../templates/contact_small.hbs'),
     initialize: function() {
         this.listenTo(this.model, 'change', this.render);
     },
@@ -15361,7 +15361,7 @@ module.exports = CollectionView = Marionette.CollectionView.extend({
     itemView: itemView
 });
 
-},{"../../templates/company_small.hbs":11}],10:[function(require,module,exports){
+},{"../../templates/company_small.hbs":12}],10:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var Handlebars = require('hbsfy/runtime');
 module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -15370,7 +15370,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"add_contact\">\n    <label for=\"name_first\">First Name:</label> <input type=\"text\" id=\"name_first\" /><br/>\n    <label for=\"name_last\">Last Name:</label> <input type=\"text\" id=\"name_last\" /><br/>\n    <label for=\"email\">Email:</label> <input type=\"text\" id=\"email\" /><br/>\n    <label for=\"phone\">Phone:</label> <input type=\"text\" id=\"phone\" /><br/>\n    <br/>\n    <a href=\"#\" class=\"save-button\">Save Contact</a> | <a href=\"#\"><< Back</a>\n</div>\n";
+  return "<div class=\"add_contact\">\n    <label for=\"name\">Name:</label> <input type=\"text\" id=\"name\" /><br/>\n    <label for=\"ticker\">Ticker:</label> <input type=\"text\" id=\"ticker\" /><br/>\n    <label for=\"year1\">Year 1:</label> <input type=\"number\" id=\"year1\" /><br/>\n    <label for=\"year2\">Year 2:</label> <input type=\"number\" id=\"year2\" /><br/>\n    <label for=\"year3\">Year 3:</label> <input type=\"number\" id=\"year3\" /><br/>\n    <label for=\"year4\">Year 4:</label> <input type=\"number\" id=\"year4\" /><br/>\n    <label for=\"year5\">Year 5:</label> <input type=\"number\" id=\"year5\" /><br/>\n    <br/>\n    <a href=\"#\" class=\"save-button\">Save Company</a> | <a href=\"#\"><< Back</a>\n</div>\n";
   });
 
 },{"hbsfy/runtime":16}],11:[function(require,module,exports){
@@ -15382,15 +15382,35 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div class=\"contact_small\">\n    <strong>";
+  buffer += "<div div=\"wls-container\">\n	<div class=\"company_full\">\n	    <strong>Name:</strong> ";
   if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + " <p>\n    ";
+    + "<br/>\n	    <strong>Ticker:</strong> ";
   if (stack1 = helpers.ticker) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.ticker; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</strong><br/>\n</div>\n";
+    + "<br/>\n	    <strong>Year 1:</strong> ";
+  if (stack1 = helpers.year1) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.year1; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "<br/>\n	    <strong>Year 2:</strong> ";
+  if (stack1 = helpers.year2) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.year2; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "<br/>\n	    <strong>Year 3:</strong> ";
+  if (stack1 = helpers.year3) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.year3; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "<br/>\n	    <strong>Year 4:</strong> ";
+  if (stack1 = helpers.year4) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.year4; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "<br/>\n	    <strong>Year 5:</strong> ";
+  if (stack1 = helpers.year5) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.year5; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "<br/>\n	</div>\n</div>\n\n<a href=\"#\" class=\"back\"><< Back</a> | <a href=\"#\" class=\"delete\">Delete Company</a>\n";
   return buffer;
   });
 
@@ -15400,26 +15420,38 @@ var Handlebars = require('hbsfy/runtime');
 module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, stack2, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div class=\"contact_full\">\n    <img src=\"http://www.gravatar.com/avatar/";
-  if (stack1 = helpers.gravatar) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.gravatar; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += "<div class=\"company_small\">\n    <strong>";
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "?d=monsterid&s=250\"/>\n    <br/><br/>\n    <strong>Name:</strong> "
-    + escapeExpression(((stack1 = ((stack1 = depth0.name),stack1 == null || stack1 === false ? stack1 : stack1.first)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + " "
-    + escapeExpression(((stack1 = ((stack1 = depth0.name),stack1 == null || stack1 === false ? stack1 : stack1.last)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "<br/>\n    <strong>Email:</strong> ";
-  if (stack2 = helpers.email) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.email; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  buffer += escapeExpression(stack2)
-    + "<br/>\n    <strong>Phone:</strong> ";
-  if (stack2 = helpers.phone) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.phone; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  buffer += escapeExpression(stack2)
-    + "<br/><br/>\n\n</div>\n\n<a href=\"#\" class=\"back\"><< Back</a> | <a href=\"#\" class=\"delete\">Delete Contact</a>\n";
+    + " <p>\n    ";
+  if (stack1 = helpers.ticker) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.ticker; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</strong><p>\n    ";
+  if (stack1 = helpers.year1) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.year1; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "<br>\n    ";
+  if (stack1 = helpers.year2) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.year2; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "<br>\n    ";
+  if (stack1 = helpers.year3) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.year3; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "<br>\n    ";
+  if (stack1 = helpers.year4) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.year4; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "<br>\n    ";
+  if (stack1 = helpers.year5) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.year5; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "<br>\n</div>\n";
   return buffer;
   });
 
