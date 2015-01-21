@@ -49,5 +49,26 @@ module.exports = {
                 console.log('found ' + contacts.length + ' existing contacts!');
             }
         });
+    },
+    checkCompanies: function() {
+               models.Company.find({}, function(err, companies) {
+            if (companies.length === 0) {
+                console.log('no contacts found, seeding...');
+                var newCompany = new models.Company({
+                        name: 'Acme Widgets',
+                        ticker: 'ACME',
+                        year1: '100',
+                        year2: '150',
+                        year3: '220',
+                        year4: '375',
+                        year5: '505'  
+                });
+                newCompany.save(function(err, company) {
+                    console.log('successfully inserted company: ' + company._id);
+                });
+            } else {
+                console.log('found ' + companies.length + ' existing companies!');
+            }
+        });       
     }
 };

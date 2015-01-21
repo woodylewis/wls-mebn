@@ -35,6 +35,7 @@ mongoose.connection.on('open', function() {
 
     // check if the db is empty, if so seed it with some contacts:
     seeder.check();
+    seeder.checkCompanies();
 });
 
 //routes list:

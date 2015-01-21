@@ -1,7 +1,8 @@
 var Marionette = require('backbone.marionette');
 
 var itemView = Marionette.ItemView.extend({
-    template: require('../../templates/contact_small.hbs'),
+    template: require('../../templates/company_small.hbs'),
+    //template: require('../../templates/contact_small.hbs'),
     initialize: function() {
         this.listenTo(this.model, 'change', this.render);
     },
@@ -10,7 +11,7 @@ var itemView = Marionette.ItemView.extend({
     },
 
     showDetails: function() {
-        window.App.core.vent.trigger('app:log', 'Contacts View: showDetails hit.');
+        window.App.core.vent.trigger('app:log', 'Companies View: showDetails hit.');
         window.App.controller.details(this.model.id);
     }
 });

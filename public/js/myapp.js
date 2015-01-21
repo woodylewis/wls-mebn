@@ -1,4 +1,4 @@
-require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"cy31T3":[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/DcPUU":[function(require,module,exports){
 var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 
 ; global.$ = require("jquery");
@@ -2475,9 +2475,11 @@ _.extend(Marionette.Module, {
 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
-},{"backbone":"n1NM5u","jquery":"RIh26+","underscore":"zNh35D"}],"backbone.marionette":[function(require,module,exports){
-module.exports=require('cy31T3');
-},{}],"n1NM5u":[function(require,module,exports){
+},{"backbone":"wskT99","jquery":"RW3XvW","underscore":"gLQ5w/"}],"backbone.marionette":[function(require,module,exports){
+module.exports=require('/DcPUU');
+},{}],"backbone":[function(require,module,exports){
+module.exports=require('wskT99');
+},{}],"wskT99":[function(require,module,exports){
 var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 
 ; global.underscore = require("underscore");
@@ -4067,9 +4069,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
-},{"underscore":"zNh35D"}],"backbone":[function(require,module,exports){
-module.exports=require('n1NM5u');
-},{}],"RIh26+":[function(require,module,exports){
+},{"underscore":"gLQ5w/"}],"RW3XvW":[function(require,module,exports){
 var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 /*!
  * jQuery JavaScript Library v1.10.2
@@ -13866,8 +13866,8 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 },{}],"jquery":[function(require,module,exports){
-module.exports=require('RIh26+');
-},{}],"zNh35D":[function(require,module,exports){
+module.exports=require('RW3XvW');
+},{}],"gLQ5w/":[function(require,module,exports){
 var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 //     Underscore.js 1.5.2
 //     http://underscorejs.org
@@ -15151,8 +15151,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 },{}],"underscore":[function(require,module,exports){
-module.exports=require('zNh35D');
-},{}]},{},["cy31T3","n1NM5u","RIh26+","zNh35D"])
+module.exports=require('gLQ5w/');
+},{}]},{},["/DcPUU","wskT99","RW3XvW","gLQ5w/"])
 ;
 ;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
@@ -15206,7 +15206,7 @@ App.prototype.start = function(){
 var Backbone = require('backbone'),
     ContactModel = require('../models/contact');
 
-module.exports = SampleCollection = Backbone.Collection.extend({
+module.exports = ContactsCollection = Backbone.Collection.extend({
     model:  ContactModel,
     url: '/api/contacts'
 });
@@ -15268,7 +15268,8 @@ myapp.start();
 var Backbone = require('backbone');
 
 module.exports = ContactModel = Backbone.Model.extend({
-    idAttribute: '_id'
+    idAttribute: '_id',
+    urlRoot: 'api/contacts'
 });
 
 },{}],6:[function(require,module,exports){
@@ -15314,20 +15315,32 @@ var Marionette = require('backbone.marionette');
 module.exports = ContactDetailsView = Marionette.ItemView.extend({
     template: require('../../templates/contact_details.hbs'),
     events: {
-        'click a': 'goBack'
+        'click a.back': 'goBack',
+        'click a.delete': 'deleteContact'
     },
 
     goBack: function(e) {
         e.preventDefault();
         window.App.controller.home();
+    },
+    deleteContact: function(e) {
+        e.preventDefault();
+        console.log('Deleting contact');
+        window.App.data.contacts.remove(this.model);
+
+        // this will actually send a DELETE to the server:
+        this.model.destroy();
+
+        window.App.controller.home();
     }
 });
 
-},{"../../templates/contact_details.hbs":11}],9:[function(require,module,exports){
+},{"../../templates/contact_details.hbs":12}],9:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
 var itemView = Marionette.ItemView.extend({
-    template: require('../../templates/contact_small.hbs'),
+    template: require('../../templates/company_small.hbs'),
+    //template: require('../../templates/contact_small.hbs'),
     initialize: function() {
         this.listenTo(this.model, 'change', this.render);
     },
@@ -15336,7 +15349,7 @@ var itemView = Marionette.ItemView.extend({
     },
 
     showDetails: function() {
-        window.App.core.vent.trigger('app:log', 'Contacts View: showDetails hit.');
+        window.App.core.vent.trigger('app:log', 'Companies View: showDetails hit.');
         window.App.controller.details(this.model.id);
     }
 });
@@ -15348,7 +15361,7 @@ module.exports = CollectionView = Marionette.CollectionView.extend({
     itemView: itemView
 });
 
-},{"../../templates/contact_small.hbs":12}],10:[function(require,module,exports){
+},{"../../templates/company_small.hbs":11}],10:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var Handlebars = require('hbsfy/runtime');
 module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -15361,6 +15374,27 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   });
 
 },{"hbsfy/runtime":16}],11:[function(require,module,exports){
+// hbsfy compiled Handlebars template
+var Handlebars = require('hbsfy/runtime');
+module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"contact_small\">\n    <strong>";
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + " <p>\n    ";
+  if (stack1 = helpers.ticker) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.ticker; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</strong><br/>\n</div>\n";
+  return buffer;
+  });
+
+},{"hbsfy/runtime":16}],12:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var Handlebars = require('hbsfy/runtime');
 module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -15385,32 +15419,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack2 = helpers.phone) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.phone; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "<br/><br/>\n\n</div>\n\n<a href=\"#\"><< Back</a>\n";
-  return buffer;
-  });
-
-},{"hbsfy/runtime":16}],12:[function(require,module,exports){
-// hbsfy compiled Handlebars template
-var Handlebars = require('hbsfy/runtime');
-module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, stack2, functionType="function", escapeExpression=this.escapeExpression;
-
-
-  buffer += "<div class=\"contact_small\">\n    <img src=\"http://www.gravatar.com/avatar/";
-  if (stack1 = helpers.gravatar) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.gravatar; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "?d=monsterid&s=45\"/>\n    <strong>"
-    + escapeExpression(((stack1 = ((stack1 = depth0.name),stack1 == null || stack1 === false ? stack1 : stack1.first)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + " "
-    + escapeExpression(((stack1 = ((stack1 = depth0.name),stack1 == null || stack1 === false ? stack1 : stack1.last)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</strong><br/>\n    ";
-  if (stack2 = helpers.email) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.email; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  buffer += escapeExpression(stack2)
-    + "\n</div>\n";
+    + "<br/><br/>\n\n</div>\n\n<a href=\"#\" class=\"back\"><< Back</a> | <a href=\"#\" class=\"delete\">Delete Contact</a>\n";
   return buffer;
   });
 

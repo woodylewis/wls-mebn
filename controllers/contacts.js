@@ -3,9 +3,16 @@ var models = require('../app/models'),
 
 module.exports = {
     index: function(req, res) {
+        /*
         models.Contact.find({}, function(err, data) {
             res.json(data);
         });
+*/
+        models.Company.find({}, function(err, data) {
+            res.json(data);
+            console.log('COMPANY', data);
+        });
+
     },
     getById: function(req, res) {
         models.Contact.find({ _id: req.params.id }, function(err, contact) {
