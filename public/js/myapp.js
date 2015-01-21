@@ -15370,7 +15370,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"add_contact\">\n    <label for=\"name\">Name:</label> <input type=\"text\" id=\"name\" /><br/>\n    <label for=\"ticker\">Ticker:</label> <input type=\"text\" id=\"ticker\" /><br/>\n    <label for=\"year1\">Year 1:</label> <input type=\"number\" id=\"year1\" /><br/>\n    <label for=\"year2\">Year 2:</label> <input type=\"number\" id=\"year2\" /><br/>\n    <label for=\"year3\">Year 3:</label> <input type=\"number\" id=\"year3\" /><br/>\n    <label for=\"year4\">Year 4:</label> <input type=\"number\" id=\"year4\" /><br/>\n    <label for=\"year5\">Year 5:</label> <input type=\"number\" id=\"year5\" /><br/>\n    <br/>\n    <a href=\"#\" class=\"save-button\">Save Company</a> | <a href=\"#\"><< Back</a>\n</div>\n";
+  return "<div class=\"add_company\">\n    <label for=\"name\">Name:</label> <input type=\"text\" id=\"name\" /><br/>\n    <label for=\"ticker\">Ticker:</label> <input type=\"text\" id=\"ticker\" /><br/>\n    <label for=\"year1\">Year 1:</label> <input type=\"number\" id=\"year1\" /><br/>\n    <label for=\"year2\">Year 2:</label> <input type=\"number\" id=\"year2\" /><br/>\n    <label for=\"year3\">Year 3:</label> <input type=\"number\" id=\"year3\" /><br/>\n    <label for=\"year4\">Year 4:</label> <input type=\"number\" id=\"year4\" /><br/>\n    <label for=\"year5\">Year 5:</label> <input type=\"number\" id=\"year5\" /><br/>\n    <br/>\n    <a href=\"#\" class=\"save-button\">Save Company</a>\n    <p><br>\n    <a href=\"#\"><< Back</a>\n</div>\n";
   });
 
 },{"hbsfy/runtime":16}],11:[function(require,module,exports){
