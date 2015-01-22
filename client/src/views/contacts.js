@@ -10,6 +10,7 @@ var itemView = Marionette.ItemView.extend({
     },
 
     showDetails: function() {
+        console.log('SHOW DETAILS', this.model.attributes);
         window.App.core.vent.trigger('app:log', 'Companies View: showDetails hit.');
         window.App.controller.details(this.model.id);
     }

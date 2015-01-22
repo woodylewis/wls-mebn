@@ -45,3 +45,21 @@
   text-align:center;
   width: 120px;
 }
+
+.wls-chart rect {
+  fill: steelblue;
+}
+
+.wls-chart text {
+  fill: white;
+  font:10px sans-serif;
+}
+
+.wls-chart2 rect {
+  fill: steelblue;
+}
+
+.wls-chart2 text {
+  fill: white;
+  font:10px sans-serif;
+}
