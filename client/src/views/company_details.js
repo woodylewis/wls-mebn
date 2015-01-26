@@ -20,6 +20,7 @@ module.exports = ContactDetailsView = Marionette.ItemView.extend({
                 .domain([0, d3.max(data)])
                 .range([0, width]);
 
+            //--------- SELECT THE WLS-CHART ELEMENT -----------
             var chart = d3.select(this.el.children[1])
                 .attr("width", width)
                 .attr("height", barHeight * data.length);
