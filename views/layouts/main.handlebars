@@ -2,22 +2,75 @@
 <html lang="en">
   <head>
     <title>WL Solutions LLC</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="AngularJS, MEAN Stack, Node.js, Express.js, MongoDB">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/myapp.css">
     <link rel="stylesheet" type="text/css" href="css/wls.css">
   </head>
   <body>
-    <div id="wls-header">
-        <h1>Portfolio</h1>
-        <p><br><a href="https://github.com/woodylewis/wls-mebn" target="_blank">GitHub Repo</a>
-        <p><br>
-        <a href="#">Companies</a> | <a href="#add">Add Company</a>
-        <p><br>
-    </div>
+     <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                 <!--- Font Awesome -->
+                <a class="navbar-brand" href="http://wls1.s3-website-us-east-1.amazonaws.com" title="Woody Lewis">
+                    <i class="fa fa-home fa-stack-lg fa-inverse"></i>
+                </a>
+                <a class="navbar-brand" href="https://github.com/woodylewis" title="github/woodylewis" target="_blank">
+                    <i class="fa fa-github fa-stack-lg fa-inverse"></i>
+                </a>
+                <a class="navbar-brand" href="http://www.linkedin.com/in/woodylewismba" title="linkedin/woodylewis" target="_blank">
+                    <i class="fa fa-linkedin-square fa-stack-lg fa-inverse"></i>
+                </a>
+                <!--- Font Awesome -->
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="http://wlsllc.com" title="WL Solutions LLC" target="_blank">WLS</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <div id="wls-spacer">&nbsp;</div>
+      <div id="wls-container">
+        <div id="wls-title">
+          Node.js, Express, Backbone.js, MongoDB
+        </div
+        <p>
+        <div class="wls-copy">
+          This is a fork of Jason Kroll's contacts app, using Backbone, Node, Express and MongoDB. The model is stock information, with D3 display of 5-year price data. 
+          <p><br>
+          <a href="https://github.com/woodylewis/wls-mebn" target="_blank">GitHub Repo</a>
+        </div>
+        <div id="wls-button-panel">
+          <a href="#"><button type="button" class="btn btn-primary">Companies</button></a>
+          <a href="#add"><button type="button" class="btn btn-primary">Add Company</button></a>
+        </div>
+      </div>
+
     <br/>
     <div id="companies_container">
       {{{body}}}
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/myapp.js"></script>
     <script type="text/javascript" src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   </body>

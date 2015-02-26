@@ -3,8 +3,6 @@ var Marionette = require('backbone.marionette');
 module.exports = ContactDetailsView = Marionette.ItemView.extend({
     template: require('../../templates/company_details.hbs'),
     onRender: function() {
-        console.log('ON SHOW',this.model.attributes.year1);
-
             var data = [
                             this.model.attributes.year1,
                             this.model.attributes.year2,
