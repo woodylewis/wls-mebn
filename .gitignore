@@ -6,3 +6,5 @@ build/*
 */.DS_Store
 mebn.err
 mebn.out
+app.err
+app.out
